@@ -1,5 +1,9 @@
 package com.semicolon.goodreads.service;
 
-public class UserService {
+import com.semicolon.goodreads.dtos.AccountCreation;
+import com.semicolon.goodreads.dtos.UserDto;
+
+public interface UserService {
+    UserDto createUser(AccountCreation accountCreation);
 
 }

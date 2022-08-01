@@ -1,6 +1,7 @@
 package com.semicolon.goodreads.models;
 import com.semicolon.goodreads.models.enums.AccountStatus;
 import com.semicolon.goodreads.models.enums.Gender;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +16,11 @@ import java.time.LocalDateTime;
 @Validated
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
 public class User {
+    public User() {
+    }
+
     @Id
     private long id;
     private String firstname;
