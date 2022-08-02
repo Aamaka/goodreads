@@ -1,14 +1,13 @@
 package com.semicolon.goodreads.models;
 import com.semicolon.goodreads.models.enums.AccountStatus;
 import com.semicolon.goodreads.models.enums.Gender;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,19 +16,34 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public class User {
     public User() {
     }
+    @SequenceGenerator(
+            name = "user_id_sequence",
+            sequenceName = "user_id_sequence"
+    )
 
     @Id
+    @Column(name = "user_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @NotBlank
     private String firstname;
     private String lastname;
     @Email
     @Column(unique = true)
+    @NotNull
+    @NotBlank
     private String email;
 
+    @NotNull
+    @NotBlank
     private String password;
+
     private LocalDateTime dob;
     private LocalDateTime dateJoined;
     private LocalDateTime location;
